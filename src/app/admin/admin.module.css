@@ -1,0 +1,64 @@
+/* Admin Page Styles */
+
+.adminContainer {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .adminTitle {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .navigationButton {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+  }
+  
+  .navigationButton button {
+    padding: 10px 15px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .navigationButton button:hover {
+    background-color: #5a6268;
+  }
+  
+  .adminForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .adminForm input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .adminForm button {
+    padding: 12px;
+    background-color: #17a2b8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .adminForm button:hover {
+    background-color: #138496;
+  }
+  
+  .successMessage {
+    text-align: center;
+    color: #28a745;
+    margin-top: 20px;
+  }
