@@ -1,20 +1,21 @@
-import fs from 'fs';
-import path from 'path';
+import { createClient } from '@supabase/supabase-js';
 
-// Path to the JSON file storing poll data
-const dataFilePath = path.join(process.cwd(), 'data', 'pollData.json');
+// Initialize Supabase client
+const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
 
 export async function GET(req) {
   try {
-    const data = JSON.parse(fs.readFileSync(dataFilePath, 'utf8'));
-    return new Response(JSON.stringify(data), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    // Fetch poll data
+    const { data, error } = await supabase.from('polls').select('*').limit(1).single();
+
+    if (error) {
+      console.error('Error fetching poll:', error);
+      return new Response(JSON.stringify({ error: 'Failed to fetch poll.' }), { status: 500 });
+    }
+
+    return new Response(JSON.stringify(data), { status: 200 });
   } catch (error) {
-    return new Response(
-      JSON.stringify({ error: 'Failed to fetch poll data.' }),
-      { status: 500 }
-    );
+    console.error('Unexpected error:', error);
+    return new Response(JSON.stringify({ error: 'Unexpected server error.' }), { status: 500 });
   }
 }
